@@ -1,8 +1,75 @@
 
 {% extends "layouts/base.html" %}
+{% block stylesheets %}
 
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+{% endblock stylesheets %}
 {% block content %}
 <h1>
     Welcome to my Green Garden Web Application
 </h1>
+<h1>Garden Types at Green Garden</h1>
+
+<table>
+    <caption>Garden Types and Their Characteristics</caption>
+    <thead>
+        <tr>
+            <th>Type of Garden</th>
+            <th colspan="2">Characteristics</th>
+            <th>Popular Plants</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Vegetable Garden</td>
+            <td colspan="2">Grows vegetables and herbs</td>
+            <td>Tomatoes, Carrots, Basil</td>
+        </tr>
+        <tr>
+            <td>Flower Garden</td>
+            <td rowspan="2">Decorative and aesthetic appeal</td>
+            <td>Seasonal flowers</td>
+            <td>Roses, Tulips, Daisies</td>
+        </tr>
+        <tr>
+            <td>Perennial Garden</td>
+            <td>Year-round plants</td>
+            <td>Lavender, Peonies, Hydrangeas</td>
+        </tr>
+        <tr>
+            <td>Rock Garden</td>
+            <td colspan="2">Features rock arrangements with various plants</td>
+            <td>Succulents, Mosses, Alpine flowers</td>
+        </tr>
+    </tbody>
+</table>
+<p>Explore the <em>wonders</em> of nature with us.</p>
+
+<h2>Our Specialties</h2>
+<ul>
+    <li><strong>Succulents</strong> - Easy to care for plants perfect for beginners.</li>
+    <li><em>Rare Orchids</em> - Exotic and <mark>vibrant</mark> flowers.</li>
+    <li><del>Herbs</del> <ins>Medicinal Plants</ins> - Beneficial for health and wellness.</li>
+</ul>
+
+<h2>Did You Know?</h2>
+<p>The Giant Sequoia is the world's largest tree, growing up to <strong>279 feet</strong> tall!</p>
+<p>The <sub>genus</sub> name of Lavender is <em>Lavandula</em>.</p>
+<p>Some plants, like the <small>Venus Flytrap</small>, are <sup>carnivorous</sup>.</p>
+
 {% endblock content %} 
