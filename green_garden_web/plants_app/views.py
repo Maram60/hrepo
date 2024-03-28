@@ -6,9 +6,9 @@ def index(request):
 
 def plants(request):
     # This view returns the plants list page for Green Garden Web App
-    return render(request, 'plantsmodule/plantList.html')
+    return render(request, 'plantsmodule/plantsList.html')
 
-def plant(request, plant_id):
+def plant(request, pId):
     # This view returns the details of a specific plant for Green Garden Web App
 
     # Example plant data
@@ -16,8 +16,8 @@ def plant(request, plant_id):
     plant2 = {'id': 2, 'name': 'Snake Plant', 'type': 'Perennial', 'watering_frequency': 'Bi-weekly', 'sunlight_requirement': 'Low to Moderate'}
 
     targetPlant = None
-    if plant1['id'] == plant_id: targetPlant = plant1
-    if plant2['id'] == plant_id: targetPlant = plant2
+    if plant1['id'] == pId: targetPlant = plant1
+    if plant2['id'] == pId: targetPlant = plant2
 
     if targetPlant == None: return redirect('/plants')
 
