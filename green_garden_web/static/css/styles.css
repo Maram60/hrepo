@@ -45,3 +45,56 @@ nav ul li a {
 nav ul li a:hover {
     text-decoration: underline;
 }
+.plant {
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.plant h2 {
+    margin-top: 0;
+}
+
+.plant a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.plant a:hover {
+    background-color: #367c39;
+}
+
+.plant img {
+    width: 30%; 
+    height: 30%; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+}
+.content {
+    text-align: center;
+    margin: 20px;
+}
+
+.content img {
+    width: 40%; 
+    height: auto;
+    border-radius: 10px; 
+    margin-bottom: 20px;
+}
+
+.content h1 {
+    margin-bottom: 0.5em;
+}
+
+.content p {
+    margin-bottom: 1em;
+    font-size: 1.1em; 
+}
+
+
