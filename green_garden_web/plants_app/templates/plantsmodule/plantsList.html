@@ -5,31 +5,15 @@
 {% block content %}
 <h1>Plants in Green Garden</h1>
 
-<div class="plant">
-    <img src="{% static 'images/plant1.jpeg' %}" alt="Aloe Vera">
-    <h2>Aloe Vera</h2>
-    <p>Type: Succulent</p>
-    <p>Watering Frequency: Weekly</p>
-    <p>Sunlight Requirement: Partial</p>
-    <a href="plants/1">View Details</a>
-</div>
-
-<div class="plant">
-    <img src="{% static 'images/plant2.jpeg' %}" alt="Snake Plant">
-    <h2>Snake Plant</h2>
-    <p>Type: Perennial</p>
-    <p>Watering Frequency: Bi-weekly</p>
-    <p>Sunlight Requirement: Low to Moderate</p>
-    <a href="plants/2">View Details</a>
-</div>
-
-<div class="plant">
-    <img src="{% static 'images/plant3.jpeg' %}" alt="Spider Plant">
-    <h2>Spider Plant</h2>
-    <p>Type: Perennial</p>
-    <p>Watering Frequency: Weekly</p>
-    <p>Sunlight Requirement: Partial to Full</p>
-    <a href="plants/3">View Details</a>
-</div>
+{% for plant in plants %}
+    <div class="plant">
+        <img src="{% static 'images/plant' %}{{ plant.id }}.jpeg" alt="{{ plant.name }}">
+        <h2>{{ plant.name }}</h2>
+        <p>Type: {{ plant.type }}</p>
+        <p>Watering Frequency: {{ plant.watering_frequency }}</p>
+        <p>Sunlight Requirement: {{ plant.sunlight_requirement }}</p>
+        <a href="plants/{{ plant.id }}">View Details</a>
+    </div>
+{% endfor %}
 
 {% endblock content %}

@@ -1,25 +1,29 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
-def index(request):
-    # This view returns the index page for Green Garden Web App
-    return render(request, 'plantsmodule/index.html')
+# Function to get a fixed list of three specific plants
+def getPlants():
+    return [
+        {'id': 1, 'name': 'Aloe Vera', 'type': 'Succulent', 'watering_frequency': 'Weekly', 'sunlight_requirement': 'Partial'},
+        {'id': 2, 'name': 'Snake Plant', 'type': 'Perennial', 'watering_frequency': 'Bi-weekly', 'sunlight_requirement': 'Low to Moderate'},
+        {'id': 3, 'name': 'Spider Plant', 'type': 'Perennial', 'watering_frequency': 'Weekly', 'sunlight_requirement': 'Partial to Full'}
+    ]
 
 def plants(request):
-    # This view returns the plants list page for Green Garden Web App
-    return render(request, 'plantsmodule/plantsList.html')
+    plants = getPlants()
+    return render(request, 'plantsmodule/plantsList.html', {'plants': plants})
+
+def index(request):
+    return render(request, 'plantsmodule/index.html')
 
 def plant(request, pId):
-    # This view returns the details of a specific plant for Green Garden Web App
+    plants = getPlants()
+    plant = next((p for p in plants if p['id'] == pId), None)
+    return render(request, 'plantsmodule/plant.html', {'plant': plant})
 
-    # Example plant data
-    plant1 = {'id': 1, 'name': 'Aloe Vera', 'type': 'Succulent', 'watering_frequency': 'Weekly', 'sunlight_requirement': 'Partial'}
-    plant2 = {'id': 2, 'name': 'Snake Plant', 'type': 'Perennial', 'watering_frequency': 'Bi-weekly', 'sunlight_requirement': 'Low to Moderate'}
-
-    targetPlant = None
-    if plant1['id'] == pId: targetPlant = plant1
-    if plant2['id'] == pId: targetPlant = plant2
-
-    if targetPlant == None: return redirect('/plants')
-
-    context = {'plant': targetPlant}  # 'plant' is the variable name accessible by the template
-    return render(request, 'plantsmodule/plant.html', context)
+def filter_plant(request, name=None, plant_type=None):
+    plants = getPlants()
+    if name:
+        plants = [p for p in plants if name.lower() in p['name'].lower()]
+    if plant_type:
+        plants = [p for p in plants if plant_type.lower() == p['type'].lower()]
+    return render(request, 'filtered_plants_template.html', {'plants': plants})
