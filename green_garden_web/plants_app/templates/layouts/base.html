@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{%load static%}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -8,6 +8,7 @@
         Green Garden Web Application  - {% block title %}{% endblock %}
     </title>
 
+    <link rel="stylesheet" href="{%static 'css/styles.css'%}">
     {% block stylesheets %}{% endblock stylesheets %}
 
     <!-- here you put your stylesheets-->

@@ -1,13 +1,15 @@
-
 {% extends "layouts/base.html" %}
+
+{% load static %}
 
 {% block content %}
 
 <h1>Plant : {{ plant.name }}</h1>
 
-<p>Type:{{ plant.type }}</p>
-<p>Watering Frequency:{{ plant.watering_frequency }}</p>
-<p>Sunlight Requirement:{{ plant.sunlight_requirement }}</p>
+<img src="{% static 'images/plant' %}{{ plant.id }}.jpeg" alt="{{ plant.name }}">
 
+<p>Type: {{ plant.type }}</p>
+<p>Watering Frequency: {{ plant.watering_frequency }}</p>
+<p>Sunlight Requirement: {{ plant.sunlight_requirement }}</p>
 
-{% endblock content %} 
+{% endblock content %}
