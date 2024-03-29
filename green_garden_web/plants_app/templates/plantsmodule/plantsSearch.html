@@ -1,0 +1,48 @@
+{% extends "layouts/base.html" %}
+{%load static%}
+{% block content %}
+<h1>Search Plants</h1>
+
+<form action="/plantsSearch" method="get">
+    <label for="name">Plant Name:</label>
+    <input type="text" id="name" name="name">
+
+    <label for="type">Plant Type:</label>
+    <select id="type" name="type">
+        <option value="">Select a Type</option>
+        <option value="Succulent">Succulent</option>
+        <option value="Perennial">Perennial</option>
+        <!-- Add more plant types as options here -->
+    </select>
+
+    <fieldset>
+        <legend>Watering Frequency:</legend>
+        <label>
+            <input type="radio" name="watering_frequency" value="Weekly"> Weekly
+        </label>
+        <label>
+            <input type="radio" name="watering_frequency" value="Bi-weekly"> Bi-weekly
+        </label>
+        <!-- Add more watering frequencies as needed -->
+    </fieldset>
+
+    <button type="submit">Search</button>
+</form>
+{% if plants %}
+    <h2>Search Results</h2>
+    <div class="plant-results">
+        {% for plant in plants %}
+            <div class="plant">
+                <img src="{% static 'images/plant' %}{{ plant.id }}.jpeg" alt="{{ plant.name }}">
+                <h3>{{ plant.name }}</h3>
+                <p>Type: {{ plant.type }}</p>
+                <p>Watering Frequency: {{ plant.watering_frequency }}</p>
+                <p>Sunlight Requirement: {{ plant.sunlight_requirement }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+
+{% endblock content %}
