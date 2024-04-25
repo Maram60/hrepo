@@ -1,9 +1,24 @@
 {% extends "layouts/base.html" %}
-
-{% load static %}
-
+{%load static%}
 {% block content %}
 <h1>Plants in Green Garden</h1>
+
+<div class="statistics">
+    <h2>Statistics</h2>
+    <p>Total number of plants: {{ plant_count }}</p>
+    <h3>Type Distribution:</h3>
+    <ul>
+        {% for type in type_distribution %}
+            <li>{{ type.type }}: {{ type.total }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Common Watering Frequencies:</h3>
+    <ul>
+        {% for freq in average_watering_frequency %}
+            <li>{{ freq.watering_frequency }}: {{ freq.num_watering }}</li>
+        {% endfor %}
+    </ul>
+</div>
 
 {% for plant in plants %}
     <div class="plant">
@@ -12,6 +27,7 @@
         <p>Type: {{ plant.type }}</p>
         <p>Watering Frequency: {{ plant.watering_frequency }}</p>
         <p>Sunlight Requirement: {{ plant.sunlight_requirement }}</p>
+        <a style="background-color: blue;" href="{% url 'edit_plant' plant.id %}">Edit This Plant</a>
         <a href="plants/{{ plant.id }}">View Details</a>
     </div>
 {% endfor %}
