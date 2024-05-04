@@ -1,5 +1,7 @@
 from django.db.models import Count, Avg
 from django.shortcuts import redirect, render
+
+from .forms import PlantForm
 from .models import Plant
 from django.views.decorators.csrf import csrf_exempt
 
@@ -47,24 +49,25 @@ def filter_plant(request):
 @csrf_exempt
 def add_plant(request):
     if request.method == 'POST':
-        Plant.objects.create(
-            name=request.POST['name'],
-            type=request.POST['type'],
-            watering_frequency=request.POST['watering_frequency'],
-            sunlight_requirement=request.POST['sunlight_requirement']
-        )
+        form = PlantForm(request.POST)
+        if form.is_valid():
+            obj = form.save()
+            return redirect('plant',pId=obj.id)  
+    else:
+        form = PlantForm()
+    return render(request, 'plantsmodule/add_plant.html', {'form': form})
 
-    return render(request, 'plantsmodule/add_plant.html')
-
+@csrf_exempt
 @csrf_exempt
 def edit_plant(request, pId):
     plant = Plant.objects.get(id=pId)
     if request.method == 'POST':
-        plant.name = request.POST['name']
-        plant.type = request.POST['type']
-        plant.watering_frequency = request.POST['watering_frequency']
-        plant.sunlight_requirement = request.POST['sunlight_requirement']
-        plant.save()
+        form = PlantForm(request.POST, instance=plant)
+        if form.is_valid():
+            obj=form.save()
+            return redirect('plant',pId=obj.id)  
+    else:
+        form = PlantForm(instance=plant)
+    return render(request, 'plantsmodule/edit_plant.html', {'form': form})
 
-    return render(request, 'plantsmodule/edit_plant.html', {'plant': plant})
 

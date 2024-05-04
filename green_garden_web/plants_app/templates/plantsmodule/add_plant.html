@@ -2,20 +2,9 @@
 
 {% block content %}
 <h1>Add New Plant</h1>
-<form method="post" action="{% url 'add_plant' %}">
+<form method="post" action="">
     {% csrf_token %}
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br>
-
-    <label for="type">Type:</label>
-    <input type="text" id="type" name="type" required><br>
-
-    <label for="watering_frequency">Watering Frequency:</label>
-    <input type="text" id="watering_frequency" name="watering_frequency" required><br>
-
-    <label for="sunlight_requirement">Sunlight Requirement:</label>
-    <input type="text" id="sunlight_requirement" name="sunlight_requirement" required><br>
-
+   {{form}}
     <button type="submit">Add Plant</button>
 </form>
 {% endblock %}
